@@ -1,0 +1,54 @@
+{
+  "cli": {
+    "version": ">= 0.46.0"
+  },
+  "build": {
+    "dev": {
+      "developmentClient": true,
+      "env": {
+        "APP_VARIANT": "dev"
+      },
+      "distribution": "internal",
+      "releaseChannel": "dev",
+      "android": {
+        "gradleCommand": ":app:assembleDevDebug"
+      },
+      "ios": {
+        "simulator": true,
+        "buildConfiguration": "Debug",
+        "scheme": "mobileapp-dev"
+      }
+    },
+    "staging": {
+      "distribution": "store",
+      "env": {
+        "APP_VARIANT": "staging"
+      },
+      "releaseChannel": "staging",
+      "ios": {
+        "buildConfiguration": "Release",
+        "scheme": "mobileapp-staging"
+      },
+      "android": {
+        "buildType": "app-bundle",
+        "gradleCommand": ":app:bundleStagingRelease"
+      }
+    },
+    "production": {
+      "distribution": "store",
+      "env": {
+        "APP_VARIANT": "production"
+      },
+      "android": {
+        "distribution": "internal",
+        "buildType": "app-bundle",
+        "gradleCommand": ":app:bundleProductionRelease"
+      },
+      "ios": {
+        "buildConfiguration": "Release",
+        "scheme": "mobileapp"
+      },
+      "releaseChannel": "production"
+    }
+  }
+}
